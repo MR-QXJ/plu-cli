@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src/",
+    "paths": {
+      "utils/*": ["utils/*"],
+      "config/*": ["config/*"],
+      "core/*": ["core/*"],
+      "/#/*": ["types/*"],
+      "/@/*": ["/*"]
+    },
+    "target": "esnext",                             
+    "module": "commonjs",                           
+    "outDir": "./bin",                              
+    "strict": true,                                 
+    "esModuleInterop": true,                        
+    "skipLibCheck": true,      
+    "experimentalDecorators": true                     
+  }
+}

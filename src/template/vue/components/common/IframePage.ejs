@@ -1,0 +1,51 @@
+// 第三方页面iframe访问（函数式组件/无状态组件）
+<template functional>
+  <div class="h100 w100 thirdpage">
+    <iframe
+      class="h100 w100"
+      frameborder="0"
+      :src="props.url"
+      v-if="props.url && props.url !== ''"
+    />
+    <div class="h100 w100 error" v-else>
+      <span class="title">ERROR</span>
+      <span class="msg">对不起，您访问的地址不存在！</span>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["url"]
+};
+</script>
+
+<style lang="scss" scoped>
+.thirdpage {
+  background-color: $color-white;
+  box-shadow: 0px 2px 3px rgba(#545454, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+
+  .error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .img {
+      display: block;
+    }
+    .title {
+      color: #cccccc;
+      font-family: syhtregular;
+      font-size: 60px;
+      font-weight: bold;
+    }
+    .msg {
+      color: $color-font2;
+      display: block;
+      font-size: 16px;
+    }
+  }
+}
+</style>

@@ -1,0 +1,53 @@
+{
+  "name": "he-cli",
+  "version": "0.0.6",
+  "description": "frontend cli tool for development",
+  "main": "bin/index.js",
+  "bin": {
+    "he": "bin/index.js"
+  },
+  "scripts": {
+    "build": "node ./build && tsc",
+    "start": "node ./build && tsc --watch",
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "author": "qinxj",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "clear": "^0.1.0",
+    "commander": "^7.2.0",
+    "download-git-repo": "^3.0.2",
+    "ejs": "^3.1.6",
+    "figlet": "^1.5.0",
+    "inquirer": "^8.1.2",
+    "module-alias": "^2.2.2",
+    "ora": "^5.4.0"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.0.7",
+    "@types/inquirer": "^7.3.3",
+    "@types/node": "^14.17.6",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
+  },
+  "_moduleAliases": {
+    "utils": "bin/utils",
+    "config": "bin/config",
+    "core": "bin/core",
+    "/#": "bin/types",
+    "/@": "src"
+  },
+  "keywords": [
+    "cli",
+    "frontend-cli"
+  ],
+  "_moduleDirectories": [
+    "node_modules_custom"
+  ]
+}

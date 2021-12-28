@@ -1,0 +1,78 @@
+//排序工具封装
+
+/*
+ * 字符排序
+ * @param a 第一个值
+ * @param b 第二个值
+ * @param key 属性名
+ */
+export function sortStr(a, b, key) {
+  const paramA = (a[key] || "").toUpperCase();
+  const paramB = (b[key] || "").toUpperCase();
+  return paramB.localeCompare(paramA) > 1 ? 1 : -1;
+}
+
+/*
+ * 数字排序
+ * @param a 第一个值
+ * @param b 第二个值
+ * @param key 属性名
+ */
+export function sortNumber(a, b, key) {
+  const paramA = a[key] || 0;
+  const paramB = b[key] || 0;
+  return paramA < paramB ? -1 : paramA > paramB ? 1 : 0;
+}
+
+/*
+ * 时间排序
+ * @param a 第一个值
+ * @param b 第二个值
+ * @param key 属性名
+ */
+export function sortTime(a, b, key) {
+  const paramA = strToTimestamp(a[key]);
+  const paramB = strToTimestamp(b[key]);
+  return paramA < paramB ? -1 : paramA > paramB ? 1 : 0;
+}
+
+/*
+ * ip地址排序
+ * @param a 第一个值
+ * @param b 第二个值
+ * @param key 属性名
+ */
+export function sortIp(a, b, key) {
+  let paramA = a[key] || "";
+  let paramB = b[key] || "";
+  paramA = paramA.replace(/(\\d+)/g, "00$1");
+  paramB = paramB.replace(/(\\d+)/g, "00$1");
+  paramA = paramA.replace(/0*(\\d{3})/g, "$1");
+  paramB = paramB.replace(/0*(\\d{3})/g, "$1");
+  paramA = paramA.replace(/\./g, "");
+  paramB = paramB.replace(/\./g, "");
+  return paramA < paramB ? -1 : paramA > paramB ? 1 : 0;
+}
+
+/*
+ * 转时间
+ * @param time 时间
+ */
+function strToTime(time) {
+  if (typeof time === "object") {
+    return time;
+  }
+  if (time.trim() === "") {
+    return null;
+  }
+  return new Date(time);
+}
+
+/*
+ * 转时间戳
+ * @param time 时间
+ */
+function strToTimestamp(time) {
+  const value = strToTime(time || "");
+  return value ? value.getTime() : 0;
+}

@@ -1,0 +1,6 @@
+{
+	"showWelcome": false,
+	"autoStart": false,
+	"autoInstall": true,
+	"commonComponentDir": "common"
+}

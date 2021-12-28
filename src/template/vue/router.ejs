@@ -1,0 +1,10 @@
+const <%= name %> = () => import("./<%= name %>.vue")
+
+export default {
+  name: "<%= lowerName %>",
+  path: "/<%= lowerName %>",
+  component: <%= name %>,
+  children: [
+
+  ]
+}

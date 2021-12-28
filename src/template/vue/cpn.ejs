@@ -1,0 +1,32 @@
+<template>
+  <div class="<%= lowerName %>">
+    <span class="title"><%= lowerName %></span>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+
+    }
+  },
+  created() {},
+  mounted() {},
+  methods: {}
+}
+</script>
+
+<style scoped lang="scss">
+.<%= lowerName %> {
+  height: 500px;
+  line-height: 500px;
+  text-align: center;
+  font-size: 30px;
+  .title {
+    font-style: italic;
+    font-weight: 700;
+    color: #00bbe4;
+  }
+}
+</style>

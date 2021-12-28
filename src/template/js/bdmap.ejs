@@ -1,0 +1,143 @@
+/*
+ * 工具类（百度地图）
+ */
+
+// 百度地图默认中心点
+// 陕西
+// export const bMapDefCenter = {
+//   lng: 108.94327000000001,
+//   lat: 34.338660000000004
+// };
+// 成都
+export const bMapDefCenter = {
+  lng: 104.06962393,
+  lat: 30.65301071,
+}
+export const bdMapSearchPlaceFilters = '陕西省'
+// 百度地图线样式
+export const bMapLineStyle = {
+  // 边线颜色
+  strokeColor: '#3eb3e6',
+  // 填充颜色。当参数为空时，圆形将没有填充效果
+  fillColor: '#0d80d1',
+  // 边线的宽度，以像素为单位
+  strokeWeight: 2,
+  // 边线透明度，取值范围0 - 1
+  strokeOpacity: 0.8,
+  // 填充的透明度，取值范围0 - 1
+  fillOpacity: 0.2,
+  // 边线的样式，solid或dashed
+  strokeStyle: 'solid',
+}
+
+/*
+ * 创建百度地图
+ * @param container 容器
+ * @param options 配置
+ */
+export function createBMap(container, options) {
+  // eslint-disable-next-line
+  return new BMap.Map(container, options);
+}
+
+/*
+ * 创建百度地图点
+ * @param lon 坐标经度
+ * @param lat 坐标纬度
+ */
+export function createBMapPoint(lon, lat) {
+  // eslint-disable-next-line
+  return new BMap.Point(lon, lat);
+}
+
+/*
+ * 创建百度地图marker
+ * @param point 百度地图点
+ * @param options 配置
+ */
+export function createBMapMarker(point, options) {
+  if (point) {
+    // eslint-disable-next-line
+    return new BMap.Marker(point, options);
+  }
+  return null
+}
+
+/*
+ * 创建百度地图size
+ * @param width 区域宽度
+ * @param height 区域高度
+ */
+export function createBMapSize(width, height) {
+  if (width && height) {
+    // eslint-disable-next-line
+    return new BMap.Size(width, height);
+  }
+  return null
+}
+
+/*
+ * 创建百度地图绘制管理工具
+ * @param map 百度地图对象
+ * @param options 配置
+ */
+export function createBMapDrawManager(map, options) {
+  if (map) {
+    // eslint-disable-next-line
+    return new BMapLib.DrawingManager(map, options);
+  }
+  return null
+}
+
+/*
+ * 创建百度地图线
+ * @param point 百度地图点
+ * @param options 配置
+ */
+export function createBMapPolyline(points, options) {
+  if (points.length > 1) {
+    // eslint-disable-next-line
+    return new BMap.Polyline(points, options);
+  }
+  return null
+}
+
+/*
+ * 创建百度地图多边形
+ * @param point 百度地图点
+ * @param options 配置
+ */
+export function createBMapPolygon(points, options) {
+  if (points.length > 1) {
+    // eslint-disable-next-line
+    return new BMap.Polygon(points, options);
+  }
+  return null
+}
+
+//获取两坐标中心点
+export function getCenterPoint(start, end) {
+  const retain = Math.pow(10, 14)
+  const slng = start.lng * retain
+  const elng = end.lng * retain
+  const slat = start.lat * retain
+  const elat = end.lat * retain
+  return {
+    lng: ((slng + elng) / 2).toFixed(0) / retain,
+    lat: ((slat + elat) / 2).toFixed(0) / retain,
+  }
+}
+
+// 获取画线距离
+export function getLineDistance(BMap, map, coords) {
+  let distanceTotal = 0
+  coords.map((coord, index) => {
+    if (index < coords.length - 1) {
+      const endCoord = coords[index + 1]
+      const start = new BMap.Point(coord[0], coord[1])
+      const end = new BMap.Point(endCoord[0], endCoord[1])
+      distanceTotal += Math.floor(map.getDistance(start, end))
+    }
+  })
+  return distanceTotal
+}
